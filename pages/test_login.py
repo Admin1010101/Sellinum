@@ -10,7 +10,7 @@ def test_login():
     service = Service(ChromeDriverManager().install())
     driver = webdriver.Chrome(service=service)
 
-    driver.get("https://promedhealthplus.com/#/login")
+    driver.get("http://localhost:3000/#/login")
 
     wait = WebDriverWait(driver, 30)
 
@@ -24,7 +24,7 @@ def test_login():
     password = wait.until(
         EC.visibility_of_element_located((By.CSS_SELECTOR, "input[type='password']"))
     )
-    password.send_keys("Ilovegod@23")
+    password.send_keys("")
 
     # Sign In button (by visible text)
     sign_in = wait.until(
@@ -36,7 +36,7 @@ def test_login():
     sign_in.click()
 
     # Wait for page to change after login attempt
-    wait.until(EC.url_changes("https://promedhealthplus.com/#/login"))
+    wait.until(EC.url_changes("http://localhost:3000/#/login"))
 
     # Simple validation
     assert "login" not in driver.current_url.lower()
